@@ -1,5 +1,7 @@
 # Workshop Scaffolding
 
+![](workshop/static/images/workshop_ss.png)
+
 This project allows you to scaffold a workshop using a AWS-styled Hugo theme similar to those available at [lunar-lander.workshop.aws](https://lunar-lander.workshop.aws/), and [eksworkshop.com](https://eksworkshop.com/)
 
 ```bash
@@ -99,3 +101,82 @@ make dev
 ```
 title = "Workshop-Scaffolding"
 ```
+
+## Github Pages Publishing:
+
+Here we show how you use Github to automatically build/deploy this site on Github Pushes and Merges
+
+#### Step 1
+
+Create an actions file if one doesn't exist
+
+```bash
+touch .github/workflows/docs.yaml
+```
+#### Step 2
+
+Change the two parameters in the ```config.toml``` to match desired github repo. 
+* The repo name needs to EXACTLY match the hugo project name we need to rename both to match.
+
+```yaml
+baseurl = "https://jonahjon.github.io/Workshop-Scaffolding"
+
+title = "Workshop-Scaffolding"
+```
+
+#### Step 3
+
+Assuming you have, or know how to create a github API key go do that through the [developer settings](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+
+Name it ```ACTIONS_DEPLOY_KEY``` in our repository settings.
+
+![](workshop/static/images/secret_deploy_key.png)
+
+#### Step 4
+
+Finish by adding in our github actions workflow. This will deploy the site on git pushes, and can be found in the "Environments" section under the repo.
+
+```yaml
+name: Publish Workshop-Scaffolding
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.2.1
+        with:
+          hugo-version: '0.58.3'
+      - name: Build
+        run: cd workshop && hugo -t learn -d public --gc --minify --cleanDestinationDir
+      - name: add nojekyll
+        run: touch ./workshop/public/.nojekyll
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_dir: ./workshop/public  # default: public
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Now we go to `Settings` and scroll down to `Github Pages`. We change source to become branch `gh-pages` and check the published link.
+
+![](workshop/static/images/github_pages.png)
+
+
+We should now be able to see a new `Environment` on our main repo page.
+
+![](workshop/static/images/new_environment.png)
+
+We can navigate to that and see our live deployed workshop.
+
+![](workshop/static/images/workshop_ss.png)
+

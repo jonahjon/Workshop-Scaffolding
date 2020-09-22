@@ -12,4 +12,4 @@ To avoid this limitations, Hugo created [shortcodes](https://gohugo.io/extras/sh
 
 **Hugo-theme-learn** provides multiple shortcodes on top of existing ones.
 
-{{%children style="h2" description="true" %}}
+{{%children style="h5" description="true" %}}
