@@ -18,7 +18,7 @@ jobs:
         with:
           hugo-version: '0.58.3'
       - name: Build
-        run: make package
+        run: cd workshop && hugo -t learn -d public --gc --minify --cleanDestinationDir
       - name: add nojekyll
         run: touch ./workshop/public/.nojekyll
       - name: Deploy
