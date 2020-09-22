@@ -1,0 +1,18 @@
+workshop/public/
+.DS_Store
+__pycache__
+
+
+amplify.yml
+hugo-cdk-deployment
+hugo-cdk-deployment/*.js
+hugo-cdk-deployment/!jest.config.js
+hugo-cdk-deployment/*.d.ts
+hugo-cdk-deployment/node_modules
+
+# CDK asset staging directory
+hugo-cdk-deployment/.cdk.staging
+hugo-cdk-deployment/cdk.out
+
+# Parcel default cache directory
+hugo-cdk-deployment/.parcel-cache

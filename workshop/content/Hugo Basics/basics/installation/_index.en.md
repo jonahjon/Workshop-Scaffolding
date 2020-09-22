@@ -81,7 +81,7 @@ You should notice three things:
 Alternatively, you can run the following command in a terminal window to tell Hugo to automatically rebuild whenever a file is changed. This can be helpful when rapidly iterating over content changes.
 
 ```bash
-hugo serve -D
+make dev
 ```
 
 ## Build the website
@@ -89,7 +89,7 @@ hugo serve -D
 When your site is ready to deploy, run the following command:
 
 ```bash
-hugo
+make build
 ```
 
 A `public` folder will be generated, containing all static content and assets for your website. It can now be deployed on any web server.

@@ -1,32 +1,40 @@
+# Change these
+baseurl = "https://jonahjon.github.io/Workshop-Scaffolding"
+title = "Workshop-Scaffolding"
+
+# Don't change these
+sectionPagesMenu = "main"
 RelativeURLs=true
 CanonifyURLs=true
 languageCode = "en-US"
 defaultContentLanguage = "en"
-
-title = "My AWS Workshop"
+min_version = 0.25
 theme = "learn"
 metaDataFormat = "yaml"
 defaultContentLanguageInSubdir= true
-
 uglyurls = true
-sectionPagesMenu = "main"
 pygmentsCodeFences = true
 pygmentsStyle = "monokai"
+license = "MIT"
 
 [params]
-  editURL = "https://code.amazon.com/packages/Aws-workshop-template/blobs/master/--/workshop/content/"
-  description = "My AWS Workshop"
-  author = "Jane Architect"
-  disableBreadcrumb = false
-  disableNextPrev = false
+  editURL = "https://jonahjon.github.io/Workshop-Scaffolding"
+  description = "Workshop Scaffolding"
+  author = "Jonah Jones"
   themeVariant = "aws"
+  showVisitedLinks = false
   disableSearch = false
-  disableAssetsBusting = true
-  disableLanguageSwitchingButton = false
-  disableShortcutsTitle = true
+  disableAssetsBusting = false
+  disableLanguageSwitchingButton = true
+  disableShortcutsTitle=true
   disableInlineCopyToClipBoard = true
+  pygmentsUseClasses = true
+  pygmentsCodeFences = true
+  pygmentsCodefencesGuessSyntax = true
+  pygmentsStyle = "tango"
 
 [outputs]
+page = [ "HTML" ]
 home = [ "HTML", "RSS", "JSON"]
 
 [blackfriday]
@@ -39,13 +47,13 @@ hrefTargetBlank = true
     [markup.goldmark.renderer]
       unsafe = true
 
-[Languages]
-[Languages.en]
-title = "My AWS Workshop"
-weight = 1
-languageName = "English"
+[[menu.shortcuts]] 
+  name = "<i class='fab fa-aws'></i> Contact us"
+  url = "https://aws.amazon.com"
+  weight = 3
 
-[Languages.fr]
-title = "Mon atelier AWS"
-weight = 2
-languageName = "Français"
+[[menu.shortcuts]] 
+  name = "<i class='fab fa-github'></i> Github repo"
+  identifier = "ds"
+  url = "https://github.com/jonahjon/Workshop-Scaffolding"
+  weight = 10
