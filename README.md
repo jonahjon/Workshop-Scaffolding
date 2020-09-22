@@ -1,10 +1,9 @@
-# Aws-workshop-template
+# Workshop Scaffolding
 
 This project allows you to scaffold a workshop using a AWS-styled Hugo theme similar to those available at [lunar-lander.workshop.aws](https://lunar-lander.workshop.aws/), and [eksworkshop.com](https://eksworkshop.com/)
 
 ```bash
 .
-├── metadata.yml                      <-- Metadata file with descriptive information about the workshop
 ├── README.md                         <-- This instructions file
 ├── deck                              <-- Directory for presentation deck
 ├── resources                         <-- Directory for workshop resources
@@ -12,7 +11,7 @@ This project allows you to scaffold a workshop using a AWS-styled Hugo theme sim
 │   ├── policies                      <-- Directory for workshop modules IAM Roles and Policies
 │   └── templates                     <-- Directory for workshop modules CloudFormation templates
 └── workshop                          
-    ├── buildspec.yml                 <-- AWS CodeBuild build script for building the workshop website (Note this is being deprecated in favour of automated builds within the workshops.aws platform. You shouldn\'t need to touch this file)
+    ├── buildspec.yml                 <-- AWS CodeBuild build script for building the workshop website
     ├── config.toml                   <-- Hugo configuration file for the workshop website
     └── content                       <-- Markdown files for pages/steps in workshop
     └── static                        <-- Any static assets to be hosted alongside the workshop (ie. images, scripts, documents, etc)
@@ -39,7 +38,7 @@ This project the following folders:
 All command line directions in this documentation assume you are in the `workshop` directory. Navigate there now, if you aren't there already.
 
 ```bash
-cd my-first-workshop/workshop
+cd workshop/
 ```
 
 ## Create your first chapter page
@@ -54,7 +53,7 @@ This template provides archetypes to create skeletons for your workshop. Begin b
 
 ```bash
 cd workshop
-hugo new --kind chapter intro/_index.en.md
+hugo new --kind chapter FirstChapter/_index.en.md
 ```
 
 By opening the given file, you should see the property `chapter=true` on top, meaning this page is a _chapter_.
@@ -66,8 +65,8 @@ By default all chapters and pages are created as a draft. If you want to render 
 Then, create content pages inside the previously created chapter. Here are two ways to create content in the chapter:
 
 ```bash
-hugo new intro/first-content.en.md
-hugo new intro/second-content/_index.en.md
+hugo new FirstChapter/first-content.en.md
+hugo new FirstChapter/second-content/_index.en.md
 ```
 
 Feel free to edit thoses files by adding some sample content and replacing the `title` value in the beginning of the files. 
@@ -77,21 +76,20 @@ Feel free to edit thoses files by adding some sample content and replacing the `
 Launch by using the following command:
 
 ```bash
-hugo serve
+make dev
 ```
 
-Go to `http://localhost:1313`
-
+Go to `http://localhost:1313/Workshop-Scaffolding/`
 You should notice three things:
 
 1. You have a left-side **Intro** menu, containing two submenus with names equal to the `title` properties in the previously created files.
 2. The home page explains how to customize it by following the instructions.
-3. When you run `hugo server`, when the contents of the files change, the page automatically refreshes with the changes. Neat!
+3. When you run `hugo server` through `make dev`, when the contents of the files change, the page automatically refreshes with the changes. Neat!
 
 Alternatively, you can run the following command in a terminal window to tell Hugo to automatically rebuild whenever a file is changed. This can be helpful when rapidly iterating over content changes.
 
 ```bash
-hugo server
+make dev
 ```
 
 ## Things to be aware of:
@@ -99,13 +97,5 @@ hugo server
 * Remove the links to "Event Outfitters" from the bottom of the front page before you publish your workshop.
 * Update the config.toml with your workshop name - the default is at the top, and also under the section [Languages.en]
 ```
-title = "My AWS Workshop"
-```
-* The template includes two sample languages, French and English (eg "_index.en.md" and "_index.fr.md"). Please don't move everything to "_index.md" as other people may want to translate your workshop in future!
-* However, you should remove the example French language selection from the config.toml unless you plan to provide a French translation. Delete the following lines:
-```
-[Languages.fr]
-title = "Mon atelier AWS"
-weight = 2
-languageName = "Français"
+title = "Workshop-Scaffolding"
 ```
